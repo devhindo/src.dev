@@ -1,4 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
+const createClient = require('@supabase/supabase-js').createClient
+const dotenv = require('dotenv');
 
-// Use a custom domain as the supabase URL
-const supabase = createClient('https://my-custom-domain.com', 'public-anon-key')
+dotenv.config({path: '../.env'})
+// process.env.KEY
+
+const SUPABASE_PROJECT_URL = process.env.SUPABASE_PROJECT_URL
+const SUPABASE_ANON_PUBLIC_KEY = process.env.SUPABASE_ANON_PUBLIC_KEY
+
+const supabase = createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_PUBLIC_KEY)
+
