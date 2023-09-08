@@ -1,9 +1,9 @@
-const { createClient } = require('@supabase/supabase-js')
-const path = require('path')
-const dotenv = require('dotenv')
-// process.env.KEY
-/*
+import { createClient } from '@supabase/supabase-js'
+import './loadEnv.js'
+
+
 const SUPABASE_PROJECT_URL = process.env.SUPABASE_PROJECT_URL
+console.log(SUPABASE_PROJECT_URL)
 const SUPABASE_ANON_PUBLIC_KEY = process.env.SUPABASE_ANON_PUBLIC_KEY
 const SERVICE_ROLE_SECRET_API_KEY = process.env.SERVICE_ROLE_SECRET_API_KEY
 
@@ -20,44 +20,23 @@ let { data: projects, error } = await supabase
     console.log(projects)
   }
 
-  const project = {
-    name: 'My Project',
-    description: 'This is my project.'
-  }
-  
-  await supabase.from('projects').insert(project)
-
-  const projectId = 1 // The ID of the project
-const rows = [
-  {
-    name: 'Row 1',
-    description: 'This is row 1.'
-  },
-  {
-    name: 'Row 2',
-    description: 'This is row 2.'
-  }
-]
-
-await supabase.from('projects').update(projectId, { rows })
-*/
-
 // client action
 
-const express = require('express')
+import express from 'express'
 const app = express()
 const port = 3000
 
-
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('static'));
+// Middleware to reset the 'data' variable when the page is refreshed
 
 app.get("/", (req, res) => {
 
   res.setHeader('Content-Type', 'text/html');
-  res.render('index.ejs');
+  res.render('index.ejs', {url: ""});
   //res.sendFile(path.join(__dirname, "client/index.ejs"));
   //res.sendFile(path.join(__dirname, "client/css/style.css"));
   //res.sendFile(path.join(__dirname, "client/js/script.js"));
@@ -67,9 +46,9 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const project = req.body.project;
-  
-  //res.send("Hello " + project);
-  res.render('index.ejs', {project: project});
+
+  const url = "https://www.google.com/search?q=" + project;
+  res.render('index.ejs', {url: url});
 });
 
 app.listen(port, () => {

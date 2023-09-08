@@ -23,8 +23,10 @@
             <input type="submit" class="btn btn-primary" value="Get Link">
         </form>
         <hr>
-        <div>
-            {{ link }}
+        <div id="url">
+            <% if (url) { %>
+                <a href="<%= url %>" target="_blank"><%= url %></a>
+            <% } %>
         </div>
     </div>
 
