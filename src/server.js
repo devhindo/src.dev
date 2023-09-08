@@ -68,7 +68,8 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   const project = req.body.project;
   
-  res.send("Hello " + project);
+  //res.send("Hello " + project);
+  res.render('index.ejs', {project: project});
 });
 
 app.listen(port, () => {
