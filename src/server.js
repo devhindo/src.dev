@@ -1,8 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
-import './loadEnv.js'
-
+const { createClient } = require('@supabase/supabase-js')
+const path = require('path')
+const dotenv = require('dotenv')
 // process.env.KEY
-
+/*
 const SUPABASE_PROJECT_URL = process.env.SUPABASE_PROJECT_URL
 const SUPABASE_ANON_PUBLIC_KEY = process.env.SUPABASE_ANON_PUBLIC_KEY
 const SERVICE_ROLE_SECRET_API_KEY = process.env.SERVICE_ROLE_SECRET_API_KEY
@@ -40,3 +40,26 @@ const rows = [
 ]
 
 await supabase.from('projects').update(projectId, { rows })
+*/
+
+// client action
+
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.use(express.static('client'))
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/index.html"));
+  res.sendFile(path.join(__dirname, "client/css/style.css"));
+  res.sendFile(path.join(__dirname, "client/js/script.js"));
+
+
+});
+
+console.log("hi");
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
