@@ -31,18 +31,15 @@ let { data: projects, error } = await supabase
 
 
   if (error) {
-    console.error(error)
-    console.log("error")
+    return undefined
   }
-  else if(url) {
+  else {
     return url
   }
 }
 async function getURL(name) {
   let url = await constructURL(name)
-  // make url a string
-  url = url[0].url
-  return url
+  return url ? url[0].url : undefined
   }
 
 
@@ -57,21 +54,24 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('static'));
 
+
 app.get("/", (req, res) => {
 
   res.setHeader('Content-Type', 'text/html');
+  // clear url
   res.render('index.ejs', {url: ""});
 
 });
 
-const url = async () => {
-  return await getURL(project)
-}
+
 
 app.post("/", async (req, res) => {
   const project = req.body.project;
   try {
     const url = await getURL(project)
+    if (url == undefined) {
+      res.render('index.ejs', {url: "This project does not exist in the database"});
+    }
     res.render('index.ejs', {url: url});
   } catch (error) {
     console.log(error)

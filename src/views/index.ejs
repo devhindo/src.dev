@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="/media/logo.png">
     <title>src</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
@@ -15,18 +16,41 @@
         <h1>src.dev</h1>
         <p>get a direct link to the codebase of the most popular open source projects.</p>
         <hr>
-        <form action="/" method="post">
-            <div class="mb-3">
-                <label for="project" class="form-label">Project</label>
-                <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
+        <div class="row align-items-center">
+            <div class="col">
+                <form action="/" method="post">
+                    <div class="mb-3">
+                        <label for="project" class="form-label">Project</label>
+                        <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Get Link">
+                </form>
+                <hr>
+                <div id="url">
+                    <% if (url) { %>
+                        <a href="<%= url %>" target="_blank"><%= url %></a>
+                    <% } %>
+                </div>
             </div>
-            <input type="submit" class="btn btn-primary" value="Get Link">
-        </form>
-        <hr>
-        <div id="url">
-            <% if (url) { %>
-                <a href="<%= url %>" target="_blank"><%= url %></a>
-            <% } %>
+            <!--
+            <div class="col vc">
+                <div class="vl"></div>
+            </div>
+            <div class="col">
+                <p>add projeaaaaaaaaaaaaaaaact</p>
+                <form action="/add" method="post">
+                    <div class="mb-3">
+                        <label for="project" class="form-label">Project</label>
+                        <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
+                    </div>
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="e.g. https://www.github.com/devhindo/src.dev">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Add">
+                </form>
+            </div>
+        -->
         </div>
     </div>
 
