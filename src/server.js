@@ -1,15 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
+import express from 'express'
 import './loadEnv.js'
 
 
 const SUPABASE_PROJECT_URL = process.env.SUPABASE_PROJECT_URL
-console.log(SUPABASE_PROJECT_URL)
 const SUPABASE_ANON_PUBLIC_KEY = process.env.SUPABASE_ANON_PUBLIC_KEY
 const SERVICE_ROLE_SECRET_API_KEY = process.env.SERVICE_ROLE_SECRET_API_KEY
 
 const supabase = createClient(SUPABASE_PROJECT_URL, SERVICE_ROLE_SECRET_API_KEY, {auth: {persistSession: false}})
 
-
+/*
 let { data: projects, error } = await supabase
   .from('projects')
   .select('name,url')
@@ -19,10 +19,35 @@ let { data: projects, error } = await supabase
   } else {
     console.log(projects)
   }
+*/
+
+  // get from supabase the url for the project name
+  async function constructURL(name) {
+
+    let { data: url, error } = await supabase
+  .from('projects')
+  .select('url')
+  .eq('name', name)
+
+
+  if (error) {
+    console.error(error)
+    console.log("error")
+  }
+  else if(url) {
+    return url
+  }
+}
+async function getURL(name) {
+  let url = await constructURL(name)
+  // make url a string
+  url = url[0].url
+  return url
+  }
+
 
 // client action
 
-import express from 'express'
 const app = express()
 const port = 3000
 
@@ -31,24 +56,27 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('static'));
-// Middleware to reset the 'data' variable when the page is refreshed
 
 app.get("/", (req, res) => {
 
   res.setHeader('Content-Type', 'text/html');
   res.render('index.ejs', {url: ""});
-  //res.sendFile(path.join(__dirname, "client/index.ejs"));
-  //res.sendFile(path.join(__dirname, "client/css/style.css"));
-  //res.sendFile(path.join(__dirname, "client/js/script.js"));
-
 
 });
 
-app.post("/", (req, res) => {
-  const project = req.body.project;
+const url = async () => {
+  return await getURL(project)
+}
 
-  const url = "https://www.google.com/search?q=" + project;
-  res.render('index.ejs', {url: url});
+app.post("/", async (req, res) => {
+  const project = req.body.project;
+  try {
+    const url = await getURL(project)
+    res.render('index.ejs', {url: url});
+  } catch (error) {
+    console.log(error)
+    res.render('index.ejs', {url: ""});
+  }
 });
 
 app.listen(port, () => {
