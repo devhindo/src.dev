@@ -27,13 +27,13 @@ input {
   width: 100%;
   padding: 0.5rem;
   margin: 0.5rem 0;
-  border: 1px solid white;
+  border: 1px solid rgb(95, 85, 141) !important;
   border-radius: 5px;
   background-color: transparent !important;
-  color: white;
+  color: white !important;
 }
 
-input:hover {
+input[type="submit"]:hover {
   border: 1px solid rgb(255, 255, 255, 0.5);
   background-color: rgba(237, 237, 237, 50) !important;
   color: black !important;
@@ -42,4 +42,9 @@ input:hover {
 input::placeholder {
   color: rgb(104, 102, 102) !important;
   font-size: smaller;
+}
+
+p, label {
+  font-size: smaller;
+  color: rgb(174, 172, 172);
 }

@@ -22,7 +22,7 @@
                 <form action="/" method="post">
                     <div class="mb-3">
                         <label for="project" class="form-label">name</label>
-                        <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
+                        <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap" required>
                     </div>
                     <input type="submit" class="btn btn-primary mx-auto" value="Get Link">
                 </form>
@@ -34,15 +34,15 @@
             </div>
 
             <div class="col-md-6 mx-auto g-5">
-                <h4>add src for a project</h4>
+                <h4>contribute by adding a project to the database</h4>
                 <form action="/" method="post">
                     <div class="mb-3">
                         <label for="project" class="form-label">Project</label>
-                        <input type="text" class="form-control" id="project" name="newprojectname" placeholder="e.g. bootstrap">
+                        <input type="text" class="form-control" id="project" name="newprojectname" placeholder="e.g. bootstrap" required>
                     </div>
                     <div class="mb-3">
                         <label for="url" class="form-label">URL</label>
-                        <input type="text" class="form-control" id="url" name="newprojecturl" placeholder="e.g. https://www.github.com/devhindo/src.dev">
+                        <input type="url" class="form-control" id="url" name="newprojecturl" placeholder="e.g. https://www.github.com/devhindo/src.dev" required>
                     </div>
                     <input type="submit" class="btn btn-primary mx-auto" value="Add">
                     <% message ? message : '' %>
