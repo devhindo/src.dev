@@ -67,8 +67,11 @@ app.use(express.static("static"));
 
 app.get("/", (req, res) => {
   res.setHeader("Content-Type", "text/html");
-  // clear url
-  res.render("index.ejs", { url: "", message: "" });
+  
+  let message = ""
+  let url = ""
+  res.render("index.ejs", { url: url, message: message });
+
 });
 
 app.post("/", async (req, res) => {
@@ -89,9 +92,9 @@ app.post("/", async (req, res) => {
       console.log(error);
       res.render("index.ejs", { url: "project doesn't exist", message: "" });
     }
-  } else {
+  } else if(newprojectname && newprojecturl) {
     await addProject(newprojectname, newprojecturl);
-    res.render("index.ejs", { url: "", message: "Project added" });
+    res.redirect("/");
   }
 });
 

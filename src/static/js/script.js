@@ -1,1 +1,3 @@
-console.log("hi");
+window.onload = function () {
+    document.querySelector('form').reset();
+  };
