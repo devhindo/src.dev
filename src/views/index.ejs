@@ -18,9 +18,10 @@
         <hr>
         <div class="row align-items-center">
             <div class="col">
+                <h4>Find src code for a project</h4>
                 <form action="/" method="post">
                     <div class="mb-3">
-                        <label for="project" class="form-label">Project</label>
+                        <label for="project" class="form-label">name</label>
                         <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Get Link">
@@ -32,25 +33,24 @@
                     <% } %>
                 </div>
             </div>
-            <!--
             <div class="col vc">
                 <div class="vl"></div>
             </div>
             <div class="col">
-                <p>add projeaaaaaaaaaaaaaaaact</p>
-                <form action="/add" method="post">
+                <h4>add src for a project</h4>
+                <form action="/" method="post">
                     <div class="mb-3">
                         <label for="project" class="form-label">Project</label>
-                        <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
+                        <input type="text" class="form-control" id="project" name="newprojectname" placeholder="e.g. bootstrap">
                     </div>
                     <div class="mb-3">
                         <label for="url" class="form-label">URL</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="e.g. https://www.github.com/devhindo/src.dev">
+                        <input type="text" class="form-control" id="url" name="newprojecturl" placeholder="e.g. https://www.github.com/devhindo/src.dev">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Add">
+                    <% message ? message : '' %>
                 </form>
             </div>
-        -->
         </div>
     </div>
 
