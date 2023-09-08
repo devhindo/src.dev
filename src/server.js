@@ -48,19 +48,27 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.use(express.static('client'))
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('static'));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/index.html"));
-  res.sendFile(path.join(__dirname, "client/css/style.css"));
-  res.sendFile(path.join(__dirname, "client/js/script.js"));
+
+  res.setHeader('Content-Type', 'text/html');
+  res.render('index.ejs');
+  //res.sendFile(path.join(__dirname, "client/index.ejs"));
+  //res.sendFile(path.join(__dirname, "client/css/style.css"));
+  //res.sendFile(path.join(__dirname, "client/js/script.js"));
 
 
 });
 
 app.post("/", (req, res) => {
-  const name = req.body.name;
-  res.render("index", { name: name });
+  const project = req.body.project;
+  
+  res.send("Hello " + project);
 });
 
 app.listen(port, () => {
