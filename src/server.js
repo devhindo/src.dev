@@ -58,7 +58,10 @@ app.get("/", (req, res) => {
 
 });
 
-console.log("hi");
+app.post("/", (req, res) => {
+  const name = req.body.name;
+  res.render("index", { name: name });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
