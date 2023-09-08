@@ -27,23 +27,4 @@ hr {
   border-left: 1px solid white;
   height: 15rem;
 }
-.vc {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
-.col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-input {
-  width: 100% !important;
-}
