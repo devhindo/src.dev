@@ -12,31 +12,28 @@
     <script src="js/script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>src.dev</h1>
-        <p>get a direct link to the codebase of the most popular open source projects.</p>
+    <div class="container-fluid p-5">
+        <h1 class="text-center">src.dev</h1>
+        <p class="text-center">get a direct link to the codebase of the most popular open source projects.</p>
         <hr>
         <div class="row">
-            <div class="col-md-5 mx-auto">
+            <div class="col-md-6 mx-auto g-5">
                 <h4>Find src code for a project</h4>
                 <form action="/" method="post">
                     <div class="mb-3">
                         <label for="project" class="form-label">name</label>
                         <input type="text" class="form-control" id="project" name="project" placeholder="e.g. bootstrap">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Get Link">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Get Link">
                 </form>
-                <hr>
                 <div id="url">
                     <% if (url) { %>
                         <a href="<%= url %>" target="_blank"><%= url %></a>
                     <% } %>
                 </div>
             </div>
-            <div class="col-md-1 mx-auto">
-                <div class="vl"></div>
-            </div>
-            <div class="col-md-5 mx-auto">
+
+            <div class="col-md-6 mx-auto g-5">
                 <h4>add src for a project</h4>
                 <form action="/" method="post">
                     <div class="mb-3">
@@ -47,7 +44,7 @@
                         <label for="url" class="form-label">URL</label>
                         <input type="text" class="form-control" id="url" name="newprojecturl" placeholder="e.g. https://www.github.com/devhindo/src.dev">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Add">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Add">
                     <% message ? message : '' %>
                 </form>
             </div>
