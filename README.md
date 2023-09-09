@@ -5,5 +5,6 @@
 
 <p align="center">
 
-- a database that contains links to popular open source projects.
+- a database containing links to the most popular open source projects.
 - get a direct link to the project's source code by passing its name.
+- contribute by adding projects to the database.
